@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using RestaurantManagement.Common.Enums;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace RestaurantManagement.Entities
@@ -31,14 +32,5 @@ namespace RestaurantManagement.Entities
 
         [NotMapped]
         public Restaurant Restaurant => Table?.Restaurant;
-    }
-
-    public enum ReservationStatus
-    {
-        Pending,
-        Confirmed,
-        Cancelled,
-        Completed,
-        NoShow
     }
 }

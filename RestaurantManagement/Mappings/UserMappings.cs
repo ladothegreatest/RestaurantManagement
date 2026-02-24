@@ -1,6 +1,16 @@
-﻿namespace RestaurantManagement.Mappings
+﻿using AutoMapper;
+using RestaurantManagement.Dtos.User;
+using RestaurantManagement.Entities;
+
+namespace RestaurantManagement.Profiles
 {
-    public class UserMappings
+    public class UserProfiles : Profile
     {
+        public UserProfiles()
+        {
+            CreateMap<CreateUserDto, User>();
+            CreateMap<UpdateUserDto, User>();
+            CreateMap<User, UserResponseDto>();
+        }
     }
 }
