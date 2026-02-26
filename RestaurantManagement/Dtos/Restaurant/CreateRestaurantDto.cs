@@ -7,16 +7,16 @@ namespace RestaurantManagement.Dtos.Restaurant
     {
         [Required(ErrorMessage = "Restaurant name is required")]
         [StringLength(100, MinimumLength = 2)]
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
         [Required(ErrorMessage = "Address is required")]
         [StringLength(200, MinimumLength = 5)]
-        public string Address { get; set; }
+        public string? Address { get; set; }
 
         [Required(ErrorMessage = "Phone number is required")]
         [Phone]
         [StringLength(20)]
-        public string PhoneNumber { get; set; }
+        public string? PhoneNumber { get; set; }
 
         public bool IsOpen { get; set; } = true;
 
@@ -31,7 +31,7 @@ namespace RestaurantManagement.Dtos.Restaurant
 
         [Required]
         [MinLength(1, ErrorMessage = "At least one operating day must be selected")]
-        public DayOfWeek[] OperatingDays { get; set; } = new[]
+        public DayOfWeek[]? OperatingDays { get; set; } = new[]
         {
             DayOfWeek.Monday, DayOfWeek.Tuesday, DayOfWeek.Wednesday,
             DayOfWeek.Thursday, DayOfWeek.Friday, DayOfWeek.Saturday, DayOfWeek.Sunday

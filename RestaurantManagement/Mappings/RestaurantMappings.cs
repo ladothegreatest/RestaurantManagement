@@ -21,7 +21,7 @@ namespace RestaurantManagement.Mappings
                 .ForMember(dest => dest.AvailableTables, opt => opt.MapFrom(src => src.Tables != null ? src.Tables.Count(t => t.IsAvailable) : 0));
         }
 
-        private DayOfWeekFlags ConvertToDayOfWeekFlags(DayOfWeek[] days)
+        private DayOfWeekFlags ConvertToDayOfWeekFlags(DayOfWeek[]? days)
         {
             if (days == null || days.Length == 0)
                 return DayOfWeekFlags.None;

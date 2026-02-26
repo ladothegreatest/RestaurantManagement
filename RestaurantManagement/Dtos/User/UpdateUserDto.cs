@@ -6,12 +6,12 @@ namespace RestaurantManagement.Dtos.User
     {
         [Required]
         [StringLength(100, MinimumLength = 2)]
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
         [Required]
         [EmailAddress]
         [StringLength(100)]
-        public string Email { get; set; }
+        public string? Email { get; set; }
 
     }
 
@@ -19,16 +19,16 @@ namespace RestaurantManagement.Dtos.User
     {
         [Required]
         [DataType(DataType.Password)]
-        public string CurrentPassword { get; set; }
+        public string? CurrentPassword { get; set; }
 
         [Required]
         [StringLength(100, MinimumLength = 6)]
         [DataType(DataType.Password)]
-        public string NewPassword { get; set; }
+        public string? NewPassword { get; set; }
 
         [Required]
         [Compare("NewPassword", ErrorMessage = "Passwords do not match")]
         [DataType(DataType.Password)]
-        public string ConfirmNewPassword { get; set; }
+        public string? ConfirmNewPassword { get; set; }
     }
 }

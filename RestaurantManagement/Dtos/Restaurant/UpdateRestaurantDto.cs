@@ -7,16 +7,16 @@ namespace RestaurantManagement.Dtos.Restaurant
     {
         [Required]
         [StringLength(100, MinimumLength = 2)]
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
         [Required]
         [StringLength(200, MinimumLength = 5)]
-        public string Address { get; set; }
+        public string? Address { get; set; }
 
         [Required]
         [Phone]
         [StringLength(20)]
-        public string PhoneNumber { get; set; }
+        public string? PhoneNumber { get; set; }
 
         [Required]
         public bool IsOpen { get; set; }
@@ -32,7 +32,7 @@ namespace RestaurantManagement.Dtos.Restaurant
 
         [Required]
         [MinLength(1)]
-        public DayOfWeek[] OperatingDays { get; set; }
+        public DayOfWeek[]? OperatingDays { get; set; }
 
         [Range(15, 240)]
         public int TableTurnoverMinutes { get; set; }

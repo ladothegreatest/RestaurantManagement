@@ -20,8 +20,8 @@ namespace RestaurantManagement.Entities
         [Required]
         [ForeignKey("Restaurant")]
         public int RestaurantId { get; set; }
-        public Restaurant Restaurant { get; set; }
+        public Restaurant? Restaurant { get; set; }
 
-        public ICollection<Reservation> Reservations { get; set; }
+        public ICollection<Reservation>? Reservations { get; set; }
     }
 }

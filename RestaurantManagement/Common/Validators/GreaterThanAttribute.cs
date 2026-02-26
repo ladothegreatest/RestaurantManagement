@@ -19,7 +19,7 @@ namespace RestaurantManagement.Common.Validators
             if (property == null)
                 throw new ArgumentException("Property with this name not found");
 
-            var comparisonValue = (TimeSpan)property.GetValue(validationContext.ObjectInstance);
+            var comparisonValue = (TimeSpan)property.GetValue(validationContext.ObjectInstance)!;
 
             if (currentValue <= comparisonValue)
                 return new ValidationResult(ErrorMessage ?? $"Must be greater than {_comparisonProperty}");

@@ -27,10 +27,10 @@ namespace RestaurantManagement.Entities
 
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
-        public User User { get; set; }
-        public RestaurantTable Table { get; set; }
+        public User? User { get; set; }
+        public RestaurantTable? Table { get; set; }
 
         [NotMapped]
-        public Restaurant Restaurant => Table?.Restaurant;
+        public Restaurant? Restaurant => Table?.Restaurant;
     }
 }

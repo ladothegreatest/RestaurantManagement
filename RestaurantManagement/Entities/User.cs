@@ -9,17 +9,17 @@ namespace RestaurantManagement.Entities
 
         [Required]
         [StringLength(100)]
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
         [Required]
         [EmailAddress]
         [StringLength(100)]
-        public string Email { get; set; }
+        public string? Email { get; set; }
 
         [Required]
         [StringLength(100)]
-        public string Password { get; set; }
+        public string? Password { get; set; }
 
-        public ICollection<Reservation> Reservations { get; set; }
+        public ICollection<Reservation>? Reservations { get; set; }
     }
 }

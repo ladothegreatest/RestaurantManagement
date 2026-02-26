@@ -7,6 +7,6 @@
         public int Capacity { get; set; }
         public bool IsAvailable { get; set; }
         public int RestaurantId { get; set; }
-        public string RestaurantName { get; set; }
+        public string? RestaurantName { get; set; }
     }
 }

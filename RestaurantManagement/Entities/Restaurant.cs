@@ -10,16 +10,16 @@ namespace RestaurantManagement.Entities
 
         [Required]
         [StringLength(100)]
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
         [Required]
         [StringLength(200)]
-        public string Address { get; set; }
+        public string? Address { get; set; }
 
         [Required]
         [Phone]
         [StringLength(20)]
-        public string PhoneNumber { get; set; }
+        public string? PhoneNumber { get; set; }
 
         public bool IsOpen { get; set; }
 
@@ -34,7 +34,7 @@ namespace RestaurantManagement.Entities
         [Range(15, 240)]
         public int TableTurnoverMinutes { get; set; } = 120;
 
-        public ICollection<RestaurantTable> Tables { get; set; }
-        public ICollection<Reservation> Reservations { get; set; }
+        public ICollection<RestaurantTable>? Tables { get; set; }
+        public ICollection<Reservation>? Reservations { get; set; }
     }
 }
