@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using RestaurantManagement.Entities;
+using RestaurantManagement.Common.Enums;
 
 namespace RestaurantManagement.Data.Configs
 {

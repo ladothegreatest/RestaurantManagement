@@ -8,7 +8,7 @@ namespace RestaurantManagement.Profiles
     {
         public UserProfiles()
         {
-            CreateMap<CreateUserDto, User>();
+            CreateMap<RegisterDto, User>();
             CreateMap<UpdateUserDto, User>();
             CreateMap<User, UserResponseDto>();
         }

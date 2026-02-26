@@ -1,4 +1,4 @@
-﻿namespace RestaurantManagement.Common
+﻿namespace RestaurantManagement.Common.ApiResponses
 {
     public class ApiResponse
     {
