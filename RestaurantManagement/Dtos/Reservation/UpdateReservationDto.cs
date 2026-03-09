@@ -18,6 +18,7 @@ namespace RestaurantManagement.Dtos.Reservation
 
     public class UpdateReservationStatusDto
     {
+        //enumdataType enum tipis mappings rtavs nebas database entityze
         [Required]
         [EnumDataType(typeof(ReservationStatus))]
         public ReservationStatus Status { get; set; }

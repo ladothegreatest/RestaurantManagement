@@ -12,7 +12,7 @@ namespace RestaurantManagement.Dtos.Reservation
 
         [Required(ErrorMessage = "Reservation time is required")]
         [DataType(DataType.DateTime)]
-        public DateTime ReservationTime { get; set; }  // ✅ Changed from ReservationDate
+        public DateTime ReservationTime { get; set; }
 
         [Required(ErrorMessage = "Number of guests is required")]
         [Range(1, 20, ErrorMessage = "Number of guests must be between 1 and 20")]

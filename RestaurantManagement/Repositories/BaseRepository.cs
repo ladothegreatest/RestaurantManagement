@@ -24,6 +24,7 @@ namespace RestaurantManagement.Repositories
         {
             IQueryable<T> query = _dbSet;
 
+            //igive database joinebi
             foreach (var include in includes)
             {
                 query = query.Include(include);

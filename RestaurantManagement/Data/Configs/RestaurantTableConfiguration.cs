@@ -30,6 +30,7 @@ namespace RestaurantManagement.Data.Configs
                 .HasForeignKey(r => r.TableId)
                 .OnDelete(DeleteBehavior.Restrict);
 
+            //magidis entitys wamsagebi composite indexi restarantId da tableNumberis mititebit
             builder.HasIndex(rt => new { rt.RestaurantId, rt.TableNumber })
                 .IsUnique();
         }

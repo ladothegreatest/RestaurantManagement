@@ -35,6 +35,7 @@ namespace RestaurantManagement.Data.Configs
                 .HasForeignKey(r => r.TableId)
                 .OnDelete(DeleteBehavior.Restrict);
 
+            //composite indexi rezervaciebis wamogebisas tableId-is da reservaciis drois mititebit
             builder.HasIndex(r => new { r.TableId, r.ReservationTime });
         }
     }

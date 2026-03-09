@@ -14,12 +14,10 @@ namespace RestaurantManagement.Controllers
     public class ReservationsController : ControllerBase
     {
         private readonly IReservationService _reservationsService;
-        private readonly ILogger<ReservationsController> _logger;
 
         public ReservationsController(IReservationService reservationsService, ILogger<ReservationsController> logger)
         {
             _reservationsService = reservationsService;
-            _logger = logger;
         }
 
         [HttpGet]
@@ -34,7 +32,6 @@ namespace RestaurantManagement.Controllers
             }
             catch(Exception ex)
             {
-                _logger.LogError(ex, "An error occurred while fetching all reservations");
                 return StatusCode(500, ApiResponsextensions<List<ReservationResponseDto>>.FailureResponse("Server error occurred"));
             }
         }
@@ -54,9 +51,8 @@ namespace RestaurantManagement.Controllers
 
                 return Ok(ApiResponsextensions<ReservationResponseDto>.SuccessResponse(reservation));
             }
-            catch(Exception ex)
+            catch
             {
-                _logger.LogError(ex, $"An error occurred while fetching reservation with ID {id}");
                 return StatusCode(500, ApiResponsextensions<ReservationResponseDto>.FailureResponse("Server error occurred"));
             }
         }
@@ -74,12 +70,10 @@ namespace RestaurantManagement.Controllers
             }
             catch (ArgumentException ex)
             {
-                _logger.LogWarning(ex, $"No reservations found for user ID {userId}");
                 return NotFound(ApiResponsextensions<List<ReservationResponseDto>>.FailureResponse(ex.Message));
             }
-            catch (Exception ex)
+            catch
             {
-                _logger.LogError(ex, $"An error occurred while fetching reservations for user ID {userId}");
                 return StatusCode(500, ApiResponsextensions<List<ReservationResponseDto>>.FailureResponse("Server error occurred"));
             }
         }
@@ -97,12 +91,10 @@ namespace RestaurantManagement.Controllers
             }
             catch (ArgumentException ex)
             {
-                _logger.LogWarning(ex, $"No reservations found for restaurant ID {restaurantId}");
                 return NotFound(ApiResponsextensions<List<ReservationResponseDto>>.FailureResponse(ex.Message));
             }
             catch
             {
-                _logger.LogError($"An error occurred while fetching reservations for restaurant ID {restaurantId}");
                 return StatusCode(500, ApiResponsextensions<List<ReservationResponseDto>>.FailureResponse("Server error occurred"));
             }
         }
@@ -122,9 +114,8 @@ namespace RestaurantManagement.Controllers
             {
                 return NotFound(ApiResponsextensions<List<ReservationResponseDto>>.FailureResponse(ex.Message));
             }
-            catch (Exception ex)
+            catch
             {
-                _logger.LogError(ex, $"An error occurred while fetching reservations for table ID {tableId}");
                 return StatusCode(500, ApiResponsextensions<List<ReservationResponseDto>>.FailureResponse("Server error occurred"));
             }
         }
@@ -143,9 +134,8 @@ namespace RestaurantManagement.Controllers
                 var reservations = await _reservationsService.GetByDateRangeAsync(startDate, endDate);
                 return Ok(ApiResponsextensions<List<ReservationResponseDto>>.SuccessResponse(reservations));
             }
-            catch (Exception ex)
+            catch
             {
-                _logger.LogError(ex, $"An error occurred while fetching reservations for date range {startDate} - {endDate}");
                 return StatusCode(500, ApiResponsextensions<List<ReservationResponseDto>>.FailureResponse("Server error occurred"));
             }
         }
@@ -164,9 +154,8 @@ namespace RestaurantManagement.Controllers
                 var reservations = await _reservationsService.GetByStatusAsync(reservationStatus);
                 return Ok(ApiResponsextensions<List<ReservationResponseDto>>.SuccessResponse(reservations));
             }
-            catch (Exception ex)
+            catch
             {
-                _logger.LogError(ex, $"An error occurred while fetching reservations with status {status}");
                 return StatusCode(500, ApiResponsextensions<List<ReservationResponseDto>>.FailureResponse("Server error occurred"));
             }
         }
@@ -187,7 +176,6 @@ namespace RestaurantManagement.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, $"An error occurred while fetching paged reservations for page {page} and page size {pageSize}");
                 return StatusCode(500, ApiResponsextensions<PagedResult<ReservationResponseDto>>.FailureResponse("Server error occurred"));
             }
         }
@@ -208,17 +196,14 @@ namespace RestaurantManagement.Controllers
             }
             catch (ArgumentException ex)
             {
-                _logger.LogWarning(ex, "Validation error while creating reservation");
                 return BadRequest(ApiResponsextensions<ReservationResponseDto>.FailureResponse(ex.Message));
             }
             catch (InvalidOperationException ex)
             {
-                _logger.LogWarning(ex, "Business rule violation while creating reservation");
                 return BadRequest(ApiResponsextensions<ReservationResponseDto>.FailureResponse(ex.Message));
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "An error occurred while creating a reservation");
                 return StatusCode(500, ApiResponsextensions<ReservationResponseDto>.FailureResponse("Server error occurred"));
             }
         }
@@ -244,7 +229,6 @@ namespace RestaurantManagement.Controllers
             }
             catch (InvalidOperationException ex)
             {
-                _logger.LogWarning(ex, $"Business rule violation while updating reservation with ID {id}");
                 return BadRequest(ApiResponsextensions<ReservationResponseDto>.FailureResponse(ex.Message));
             }
             catch
@@ -274,7 +258,6 @@ namespace RestaurantManagement.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, $"An error occurred while updating status for reservation with ID {id}");
                 return StatusCode(500, ApiResponseExtensions.FailureResponse("Server error occurred"));
             }
         }
@@ -297,12 +280,10 @@ namespace RestaurantManagement.Controllers
             }
             catch (InvalidOperationException ex)
             {
-                _logger.LogWarning(ex, $"Business rule violation while cancelling reservation with ID {id}");
                 return BadRequest(ApiResponseExtensions.FailureResponse(ex.Message));
             }
             catch
             {
-                _logger.LogError($"An error occurred while cancelling reservation with ID {id}");
                 return StatusCode(500, ApiResponseExtensions.FailureResponse("Server error occurred"));
             }
         }
@@ -324,7 +305,6 @@ namespace RestaurantManagement.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, $"An error occurred while deleting reservation with ID {id}");
                 return StatusCode(500, ApiResponseExtensions.FailureResponse("Server error occurred"));
             }
         }

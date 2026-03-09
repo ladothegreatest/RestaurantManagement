@@ -8,6 +8,7 @@ using RestaurantManagement.Profiles;
 using RestaurantManagement.Repositories;
 using RestaurantManagement.Services;
 using RestaurantManagement.Services.Interfaces;
+using Serilog;
 using System.Text;
 
 namespace RestaurantManagement.Common.Extensions
@@ -53,7 +54,6 @@ namespace RestaurantManagement.Common.Extensions
                   IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JwtSettings:Key"]!))
               };
 
-              // 👇 add this to see the real reason
               options.Events = new JwtBearerEvents
               {
                   OnAuthenticationFailed = context =>
@@ -99,6 +99,19 @@ namespace RestaurantManagement.Common.Extensions
                     }
                 });
             });
+        }
+
+        public static void ConfigureLogger(this WebApplicationBuilder builder)
+        {
+            Log.Logger = new LoggerConfiguration()
+            .WriteTo.Console()
+            .WriteTo.File(
+                Path.Combine(AppContext.BaseDirectory, "Logs", "app-.txt"),
+                rollingInterval: RollingInterval.Day
+            )
+            .CreateLogger();
+
+            builder.Host.UseSerilog();
         }
     }
 }

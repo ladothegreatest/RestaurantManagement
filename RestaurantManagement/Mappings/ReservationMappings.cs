@@ -9,9 +9,7 @@ namespace RestaurantManagement.Mappings
     {
         public ReservationMappings()
         {
-            CreateMap<CreateReservationDto, Reservation>()
-                .ForMember(dest => dest.Status, opt => opt.MapFrom(src => ReservationStatus.Pending))
-                .ForMember(dest => dest.CreatedAt, opt => opt.MapFrom(src => DateTime.UtcNow));
+            CreateMap<CreateReservationDto, Reservation>();
 
             CreateMap<UpdateReservationDto, Reservation>()
                 .ForMember(dest => dest.Id, opt => opt.Ignore())

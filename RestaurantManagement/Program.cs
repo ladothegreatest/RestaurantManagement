@@ -6,7 +6,7 @@ builder.ConfigureDatabase();
 builder.AddServices();
 builder.AddJWTAuthentication();
 builder.ConfigureSwagger();
-
+builder.ConfigureLogger();
 
 var app = builder.Build();
 
